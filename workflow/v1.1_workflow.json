@@ -1,0 +1,592 @@
+{
+    "client_id": "4a36d40d67ce4e88921f79f0c6fefcfb",
+    "prompt": {
+        "79": {
+            "inputs": {
+                "image": "UID164_T1667439783547 (1).jpg",
+                "choose file to upload": "image"
+            },
+            "class_type": "LoadImage"
+        },
+        "80": {
+            "inputs": {
+                "action": "append",
+                "tidy_tags": "yes",
+                "text_a": "undefined",
+                "text_b": "choiseonhyo positive",
+                "text_c": ""
+            },
+            "class_type": "StringFunction|pysssss"
+        },
+        "81": {
+            "inputs": {
+                "action": "append",
+                "tidy_tags": "yes",
+                "text_a": "undefined",
+                "text_b": "choiseonhyo negative",
+                "text_c": ""
+            },
+            "class_type": "StringFunction|pysssss"
+        },
+        "82": {
+            "inputs": {
+                "action": "append",
+                "tidy_tags": "yes",
+                "text_a": [
+                    "80",
+                    0
+                ],
+                "text_b": "beautiful masterpiece, sharp focus, ultra detailed, best quality, warm lighting, thick line art, artstation trending, Animated_Concept",
+                "text_c": ""
+            },
+            "class_type": "StringFunction|pysssss"
+        },
+        "83": {
+            "inputs": {
+                "action": "append",
+                "tidy_tags": "yes",
+                "text_a": [
+                    "81",
+                    0
+                ],
+                "text_b": "disfigured, ugly, bad, immature, b&w, low quality, out of focus, worst quality, watermark, cropped, nsfw, cross-eye, missing fingers, signature, blurry, extra arms, bad legs, bad proportions, extra limbs, deformed, bad finggers, loweres, bad eyes, two tongues, bad tongues",
+                "text_c": ""
+            },
+            "class_type": "StringFunction|pysssss"
+        },
+        "84": {
+            "inputs": {
+                "value": "0.5"
+            },
+            "class_type": "SimpleMath"
+        },
+        "85": {
+            "inputs": {
+                "value": "25"
+            },
+            "class_type": "SimpleMath"
+        },
+        "86": {
+            "inputs": {
+                "value": "a/b",
+                "a": [
+                    "85",
+                    0
+                ],
+                "b": [
+                    "84",
+                    1
+                ]
+            },
+            "class_type": "SimpleMath"
+        },
+        "87": {
+            "inputs": {
+                "value": "a-b",
+                "a": [
+                    "86",
+                    0
+                ],
+                "b": [
+                    "85",
+                    0
+                ]
+            },
+            "class_type": "SimpleMath"
+        },
+        "88": {
+            "inputs": {
+                "value": "a+b",
+                "a": [
+                    "87",
+                    0
+                ],
+                "b": [
+                    "89",
+                    0
+                ]
+            },
+            "class_type": "SimpleMath"
+        },
+        "89": {
+            "inputs": {
+                "value": "a*b",
+                "a": [
+                    "85",
+                    0
+                ],
+                "b": [
+                    "90",
+                    1
+                ]
+            },
+            "class_type": "SimpleMath"
+        },
+        "90": {
+            "inputs": {
+                "value": "0.8"
+            },
+            "class_type": "SimpleMath"
+        },
+        "91": {
+            "inputs": {
+                "upscale_method": "nearest-exact",
+                "width": [
+                    "92",
+                    0
+                ],
+                "height": [
+                    "92",
+                    1
+                ],
+                "crop": "disabled",
+                "image": [
+                    "79",
+                    0
+                ]
+            },
+            "class_type": "ImageScale"
+        },
+        "92": {
+            "inputs": {
+                "width": 1024,
+                "height": 1024,
+                "aspect_ratio": "3:2 landscape 1216x832",
+                "swap_dimensions": "Off",
+                "upscale_factor": 1,
+                "batch_size": 1
+            },
+            "class_type": "CR SDXL Aspect Ratio"
+        },
+        "93": {
+            "inputs": {
+                "low_threshold": 100,
+                "high_threshold": 200,
+                "resolution": [
+                    "92",
+                    0
+                ],
+                "image": [
+                    "91",
+                    0
+                ]
+            },
+            "class_type": "CannyEdgePreprocessor"
+        },
+        "94": {
+            "inputs": {
+                "rm_nearest": 0,
+                "rm_background": 0,
+                "boost": "enable",
+                "resolution": [
+                    "92",
+                    0
+                ],
+                "image": [
+                    "91",
+                    0
+                ]
+            },
+            "class_type": "LeReS-DepthMapPreprocessor"
+        },
+        "95": {
+            "inputs": {
+                "strength": 0.5,
+                "start_percent": 0,
+                "end_percent": 1,
+                "control_net": [
+                    "96",
+                    0
+                ],
+                "image": [
+                    "93",
+                    0
+                ],
+                "cnet_stack": [
+                    "97",
+                    0
+                ]
+            },
+            "class_type": "Control Net Stacker"
+        },
+        "96": {
+            "inputs": {
+                "control_net_name": "control-lora-canny-rank256.safetensors"
+            },
+            "class_type": "ControlNetLoader"
+        },
+        "97": {
+            "inputs": {
+                "strength": 1.75,
+                "start_percent": 0,
+                "end_percent": 1,
+                "control_net": [
+                    "98",
+                    0
+                ],
+                "image": [
+                    "94",
+                    0
+                ]
+            },
+            "class_type": "Control Net Stacker"
+        },
+        "98": {
+            "inputs": {
+                "control_net_name": "control-lora-depth-rank256.safetensors"
+            },
+            "class_type": "ControlNetLoader"
+        },
+        "99": {
+            "inputs": {
+                "pixels": [
+                    "91",
+                    0
+                ],
+                "vae": [
+                    "100",
+                    2
+                ]
+            },
+            "class_type": "VAEEncode"
+        },
+        "100": {
+            "inputs": {
+                "ckpt_name": "sdXL_v10VAEFix.safetensors"
+            },
+            "class_type": "CheckpointLoaderSimple"
+        },
+        "101": {
+            "inputs": {
+                "base_ckpt_name": "sdXL_v10VAEFix.safetensors",
+                "base_clip_skip": -1,
+                "refiner_ckpt_name": "sdXL_v10RefinerVAEFix.safetensors",
+                "refiner_clip_skip": -1,
+                "positive_ascore": 6,
+                "negative_ascore": 2,
+                "vae_name": "Baked VAE",
+                "positive": [
+                    "104",
+                    0
+                ],
+                "negative": [
+                    "104",
+                    1
+                ],
+                "token_normalization": "none",
+                "weight_interpretation": "comfy",
+                "empty_latent_width": [
+                    "92",
+                    0
+                ],
+                "empty_latent_height": [
+                    "92",
+                    1
+                ],
+                "batch_size": [
+                    "92",
+                    3
+                ],
+                "lora_stack": [
+                    "103",
+                    0
+                ],
+                "cnet_stack": [
+                    "95",
+                    0
+                ]
+            },
+            "class_type": "Eff. Loader SDXL"
+        },
+        "102": {
+            "inputs": {
+                "noise_seed": 266582301006893,
+                "steps": [
+                    "86",
+                    0
+                ],
+                "cfg": 7,
+                "sampler_name": "euler",
+                "scheduler": "normal",
+                "start_at_step": [
+                    "87",
+                    0
+                ],
+                "refine_at_step": [
+                    "88",
+                    0
+                ],
+                "preview_method": "auto",
+                "vae_decode": "true",
+                "sdxl_tuple": [
+                    "101",
+                    0
+                ],
+                "latent_image": [
+                    "99",
+                    0
+                ],
+                "optional_vae": [
+                    "101",
+                    2
+                ]
+            },
+            "class_type": "KSampler SDXL (Eff.)"
+        },
+        "103": {
+            "inputs": {
+                "input_mode": "simple",
+                "lora_count": 4,
+                "lora_name_1": "judy.safetensors",
+                "lora_wt_1": 0,
+                "model_str_1": 1,
+                "clip_str_1": 1,
+                "lora_name_2": "FF.102.colossusProjectXLSFW_49bExperimental.LORA.safetensors",
+                "lora_wt_2": 0,
+                "model_str_2": 1,
+                "clip_str_2": 1,
+                "lora_name_3": "Animated_Concept.safetensors",
+                "lora_wt_3": 0.5,
+                "model_str_3": 1,
+                "clip_str_3": 1,
+                "lora_name_4": "FF-Style-Mid-HOT-Week3.LORA.safetensors",
+                "lora_wt_4": 1.5,
+                "model_str_4": 1,
+                "clip_str_4": 1,
+                "lora_name_5": "XL\\pixel-art-xl-v1.1.safetensors",
+                "lora_wt_5": 0,
+                "model_str_5": 1,
+                "clip_str_5": 1,
+                "lora_name_6": "None",
+                "lora_wt_6": 1,
+                "model_str_6": 1,
+                "clip_str_6": 1,
+                "lora_name_7": "None",
+                "lora_wt_7": 1,
+                "model_str_7": 1,
+                "clip_str_7": 1,
+                "lora_name_8": "None",
+                "lora_wt_8": 1,
+                "model_str_8": 1,
+                "clip_str_8": 1,
+                "lora_name_9": "None",
+                "lora_wt_9": 1,
+                "model_str_9": 1,
+                "clip_str_9": 1,
+                "lora_name_10": "None",
+                "lora_wt_10": 1,
+                "model_str_10": 1,
+                "clip_str_10": 1,
+                "lora_name_11": "None",
+                "lora_wt_11": 1,
+                "model_str_11": 1,
+                "clip_str_11": 1,
+                "lora_name_12": "None",
+                "lora_wt_12": 1,
+                "model_str_12": 1,
+                "clip_str_12": 1,
+                "lora_name_13": "None",
+                "lora_wt_13": 1,
+                "model_str_13": 1,
+                "clip_str_13": 1,
+                "lora_name_14": "None",
+                "lora_wt_14": 1,
+                "model_str_14": 1,
+                "clip_str_14": 1,
+                "lora_name_15": "None",
+                "lora_wt_15": 1,
+                "model_str_15": 1,
+                "clip_str_15": 1,
+                "lora_name_16": "None",
+                "lora_wt_16": 1,
+                "model_str_16": 1,
+                "clip_str_16": 1,
+                "lora_name_17": "None",
+                "lora_wt_17": 1,
+                "model_str_17": 1,
+                "clip_str_17": 1,
+                "lora_name_18": "None",
+                "lora_wt_18": 1,
+                "model_str_18": 1,
+                "clip_str_18": 1,
+                "lora_name_19": "None",
+                "lora_wt_19": 1,
+                "model_str_19": 1,
+                "clip_str_19": 1,
+                "lora_name_20": "None",
+                "lora_wt_20": 1,
+                "model_str_20": 1,
+                "clip_str_20": 1,
+                "lora_name_21": "None",
+                "lora_wt_21": 1,
+                "model_str_21": 1,
+                "clip_str_21": 1,
+                "lora_name_22": "None",
+                "lora_wt_22": 1,
+                "model_str_22": 1,
+                "clip_str_22": 1,
+                "lora_name_23": "None",
+                "lora_wt_23": 1,
+                "model_str_23": 1,
+                "clip_str_23": 1,
+                "lora_name_24": "None",
+                "lora_wt_24": 1,
+                "model_str_24": 1,
+                "clip_str_24": 1,
+                "lora_name_25": "None",
+                "lora_wt_25": 1,
+                "model_str_25": 1,
+                "clip_str_25": 1,
+                "lora_name_26": "None",
+                "lora_wt_26": 1,
+                "model_str_26": 1,
+                "clip_str_26": 1,
+                "lora_name_27": "None",
+                "lora_wt_27": 1,
+                "model_str_27": 1,
+                "clip_str_27": 1,
+                "lora_name_28": "None",
+                "lora_wt_28": 1,
+                "model_str_28": 1,
+                "clip_str_28": 1,
+                "lora_name_29": "None",
+                "lora_wt_29": 1,
+                "model_str_29": 1,
+                "clip_str_29": 1,
+                "lora_name_30": "None",
+                "lora_wt_30": 1,
+                "model_str_30": 1,
+                "clip_str_30": 1,
+                "lora_name_31": "None",
+                "lora_wt_31": 1,
+                "model_str_31": 1,
+                "clip_str_31": 1,
+                "lora_name_32": "None",
+                "lora_wt_32": 1,
+                "model_str_32": 1,
+                "clip_str_32": 1,
+                "lora_name_33": "None",
+                "lora_wt_33": 1,
+                "model_str_33": 1,
+                "clip_str_33": 1,
+                "lora_name_34": "None",
+                "lora_wt_34": 1,
+                "model_str_34": 1,
+                "clip_str_34": 1,
+                "lora_name_35": "None",
+                "lora_wt_35": 1,
+                "model_str_35": 1,
+                "clip_str_35": 1,
+                "lora_name_36": "None",
+                "lora_wt_36": 1,
+                "model_str_36": 1,
+                "clip_str_36": 1,
+                "lora_name_37": "None",
+                "lora_wt_37": 1,
+                "model_str_37": 1,
+                "clip_str_37": 1,
+                "lora_name_38": "None",
+                "lora_wt_38": 1,
+                "model_str_38": 1,
+                "clip_str_38": 1,
+                "lora_name_39": "None",
+                "lora_wt_39": 1,
+                "model_str_39": 1,
+                "clip_str_39": 1,
+                "lora_name_40": "None",
+                "lora_wt_40": 1,
+                "model_str_40": 1,
+                "clip_str_40": 1,
+                "lora_name_41": "None",
+                "lora_wt_41": 1,
+                "model_str_41": 1,
+                "clip_str_41": 1,
+                "lora_name_42": "None",
+                "lora_wt_42": 1,
+                "model_str_42": 1,
+                "clip_str_42": 1,
+                "lora_name_43": "None",
+                "lora_wt_43": 1,
+                "model_str_43": 1,
+                "clip_str_43": 1,
+                "lora_name_44": "None",
+                "lora_wt_44": 1,
+                "model_str_44": 1,
+                "clip_str_44": 1,
+                "lora_name_45": "None",
+                "lora_wt_45": 1,
+                "model_str_45": 1,
+                "clip_str_45": 1,
+                "lora_name_46": "None",
+                "lora_wt_46": 1,
+                "model_str_46": 1,
+                "clip_str_46": 1,
+                "lora_name_47": "None",
+                "lora_wt_47": 1,
+                "model_str_47": 1,
+                "clip_str_47": 1,
+                "lora_name_48": "None",
+                "lora_wt_48": 1,
+                "model_str_48": 1,
+                "clip_str_48": 1,
+                "lora_name_49": "None",
+                "lora_wt_49": 1,
+                "model_str_49": 1,
+                "clip_str_49": 1
+            },
+            "class_type": "LoRA Stacker"
+        },
+        "104": {
+            "inputs": {
+                "text_positive": [
+                    "82",
+                    0
+                ],
+                "text_negative": [
+                    "83",
+                    0
+                ],
+                "style": "sai-enhance",
+                "log_prompt": "Yes"
+            },
+            "class_type": "SDXLPromptStyler"
+        },
+        "105": {
+            "inputs": {
+                "images": [
+                    "94",
+                    0
+                ]
+            },
+            "class_type": "PreviewImage"
+        },
+        "106": {
+            "inputs": {
+                "images": [
+                    "93",
+                    0
+                ]
+            },
+            "class_type": "PreviewImage"
+        },
+        "107": {
+            "inputs": {
+                "filename_prefix": "ComfyUI",
+                "images": [
+                    "102",
+                    3
+                ]
+            },
+            "class_type": "SaveImage"
+        },
+        "110": {
+            "inputs": {
+                "images": [
+                    "79",
+                    0
+                ]
+            },
+            "class_type": "PreviewImage"
+        }
+    }
+}

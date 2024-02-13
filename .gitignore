@@ -1,0 +1,7 @@
+##
+client/*
+!client/client_pull_and_build
+*.jar
+
+##
+.env

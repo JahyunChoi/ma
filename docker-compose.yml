@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+    db:
+        image: mysql:8.2.0
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: mabelley
+        ports:
+            - "3307:3307"
+        healthcheck:
+            test: ['CMD', 'mysqladmin', 'ping', '--password=${MYSQL_ROOT_PASSWORD}']
+            interval: 10s
+            timeout: 5s
+            retries: 3
+    server:
+        depends_on:
+            db:
+                condition: service_healthy
+        image: azul/zulu-openjdk:17-latest
+        restart: always
+        volumes:
+            - ./mabelley_server2-0.0.1-SNAPSHOT.jar:/app/mabelley_server2-0.0.1-SNAPSHOT.jar
+            - ./workflow:/workflow
+        command: sh -c "java -jar -Dspring.profiles.active=prod /app/mabelley_server2-0.0.1-SNAPSHOT.jar"
+        ports:
+            - 8090:8090
+    client:
+        image: node:20-alpine3.19
+        ports:
+            - 3030:3030
+        command: sh -c "cd client && npm i && npm run build2 && PORT=3030 node app.js"
+        # command: sh -c "cd client && npm i && PORT=3000 node app.js"
+        volumes:
+            - ./client:/client

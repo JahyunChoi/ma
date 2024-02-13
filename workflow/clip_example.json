@@ -1,0 +1,25 @@
+{
+  "client_id": "9d88de89-6538-4f79-a606-dcb49a2d3413",
+  "prompt": {
+    "1": {
+      "inputs": {
+        "image": "UID1796_T1679632606074.jpg",
+        "upload": "image"
+      },
+      "class_type": "LoadImage"
+    },
+    "2": {
+      "inputs": {
+        "model": "wd-v1-4-convnextv2-tagger-v2",
+        "threshold": 0.35,
+        "character_threshold": 0.85,
+        "exclude_tags": "",
+        "image": [
+          "1",
+          0
+        ]
+      },
+      "class_type": "WD14Tagger|pysssss"
+    }
+  }
+}

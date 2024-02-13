@@ -1,0 +1,2762 @@
+{
+    "client_id": "4a36d40d67ce4e88921f79f0c6fefcfb",
+    "prompt": {
+        "79": {
+            "inputs": {
+                "image": "UID164_T1667439783547 (1).jpg",
+                "choose file to upload": "image"
+            },
+            "class_type": "LoadImage"
+        },
+        "80": {
+            "inputs": {
+                "action": "append",
+                "tidy_tags": "yes",
+                "text_a": "undefined",
+                "text_b": "choiseonhyo positive",
+                "text_c": ""
+            },
+            "class_type": "StringFunction|pysssss"
+        },
+        "81": {
+            "inputs": {
+                "action": "append",
+                "tidy_tags": "yes",
+                "text_a": "undefined",
+                "text_b": "choiseonhyo negative",
+                "text_c": ""
+            },
+            "class_type": "StringFunction|pysssss"
+        },
+        "82": {
+            "inputs": {
+                "action": "append",
+                "tidy_tags": "yes",
+                "text_a": [
+                    "80",
+                    0
+                ],
+                "text_b": "beautiful masterpiece, sharp focus, ultra detailed, best quality, warm lighting, thick line art, artstation trending, Animated_Concept",
+                "text_c": ""
+            },
+            "class_type": "StringFunction|pysssss"
+        },
+        "83": {
+            "inputs": {
+                "action": "append",
+                "tidy_tags": "yes",
+                "text_a": [
+                    "81",
+                    0
+                ],
+                "text_b": "disfigured, ugly, bad, immature, b&w, low quality, out of focus, worst quality, watermark, cropped, nsfw, cross-eye, missing fingers, signature, blurry, extra arms, bad legs, bad proportions, extra limbs, deformed, bad finggers, loweres, bad eyes, two tongues, bad tongues",
+                "text_c": ""
+            },
+            "class_type": "StringFunction|pysssss"
+        },
+        "84": {
+            "inputs": {
+                "value": "0.5"
+            },
+            "class_type": "SimpleMath"
+        },
+        "85": {
+            "inputs": {
+                "value": "25"
+            },
+            "class_type": "SimpleMath"
+        },
+        "86": {
+            "inputs": {
+                "value": "a/b",
+                "a": [
+                    "85",
+                    0
+                ],
+                "b": [
+                    "84",
+                    1
+                ]
+            },
+            "class_type": "SimpleMath"
+        },
+        "87": {
+            "inputs": {
+                "value": "a-b",
+                "a": [
+                    "86",
+                    0
+                ],
+                "b": [
+                    "85",
+                    0
+                ]
+            },
+            "class_type": "SimpleMath"
+        },
+        "88": {
+            "inputs": {
+                "value": "a+b",
+                "a": [
+                    "87",
+                    0
+                ],
+                "b": [
+                    "89",
+                    0
+                ]
+            },
+            "class_type": "SimpleMath"
+        },
+        "89": {
+            "inputs": {
+                "value": "a*b",
+                "a": [
+                    "85",
+                    0
+                ],
+                "b": [
+                    "90",
+                    1
+                ]
+            },
+            "class_type": "SimpleMath"
+        },
+        "90": {
+            "inputs": {
+                "value": "0.8"
+            },
+            "class_type": "SimpleMath"
+        },
+        "91": {
+            "inputs": {
+                "upscale_method": "nearest-exact",
+                "width": [
+                    "92",
+                    0
+                ],
+                "height": [
+                    "92",
+                    1
+                ],
+                "crop": "disabled",
+                "image": [
+                    "79",
+                    0
+                ]
+            },
+            "class_type": "ImageScale"
+        },
+        "92": {
+            "inputs": {
+                "width": 1024,
+                "height": 1024,
+                "aspect_ratio": "3:2 landscape 1216x832",
+                "swap_dimensions": "Off",
+                "upscale_factor": 1,
+                "batch_size": 1
+            },
+            "class_type": "CR SDXL Aspect Ratio"
+        },
+        "93": {
+            "inputs": {
+                "low_threshold": 100,
+                "high_threshold": 200,
+                "resolution": [
+                    "92",
+                    0
+                ],
+                "image": [
+                    "91",
+                    0
+                ]
+            },
+            "class_type": "CannyEdgePreprocessor"
+        },
+        "94": {
+            "inputs": {
+                "rm_nearest": 0,
+                "rm_background": 0,
+                "boost": "enable",
+                "resolution": [
+                    "92",
+                    0
+                ],
+                "image": [
+                    "91",
+                    0
+                ]
+            },
+            "class_type": "LeReS-DepthMapPreprocessor"
+        },
+        "95": {
+            "inputs": {
+                "strength": 0.5,
+                "start_percent": 0,
+                "end_percent": 1,
+                "control_net": [
+                    "96",
+                    0
+                ],
+                "image": [
+                    "93",
+                    0
+                ],
+                "cnet_stack": [
+                    "97",
+                    0
+                ]
+            },
+            "class_type": "Control Net Stacker"
+        },
+        "96": {
+            "inputs": {
+                "control_net_name": "control-lora-canny-rank256.safetensors"
+            },
+            "class_type": "ControlNetLoader"
+        },
+        "97": {
+            "inputs": {
+                "strength": 1.75,
+                "start_percent": 0,
+                "end_percent": 1,
+                "control_net": [
+                    "98",
+                    0
+                ],
+                "image": [
+                    "94",
+                    0
+                ]
+            },
+            "class_type": "Control Net Stacker"
+        },
+        "98": {
+            "inputs": {
+                "control_net_name": "control-lora-depth-rank256.safetensors"
+            },
+            "class_type": "ControlNetLoader"
+        },
+        "99": {
+            "inputs": {
+                "pixels": [
+                    "91",
+                    0
+                ],
+                "vae": [
+                    "100",
+                    2
+                ]
+            },
+            "class_type": "VAEEncode"
+        },
+        "100": {
+            "inputs": {
+                "ckpt_name": "sdXL_v10VAEFix.safetensors"
+            },
+            "class_type": "CheckpointLoaderSimple"
+        },
+        "101": {
+            "inputs": {
+                "base_ckpt_name": "sdXL_v10VAEFix.safetensors",
+                "base_clip_skip": -1,
+                "refiner_ckpt_name": "sdXL_v10RefinerVAEFix.safetensors",
+                "refiner_clip_skip": -1,
+                "positive_ascore": 6,
+                "negative_ascore": 2,
+                "vae_name": "Baked VAE",
+                "positive": [
+                    "104",
+                    0
+                ],
+                "negative": [
+                    "104",
+                    1
+                ],
+                "token_normalization": "none",
+                "weight_interpretation": "comfy",
+                "empty_latent_width": [
+                    "92",
+                    0
+                ],
+                "empty_latent_height": [
+                    "92",
+                    1
+                ],
+                "batch_size": [
+                    "92",
+                    3
+                ],
+                "lora_stack": [
+                    "103",
+                    0
+                ],
+                "cnet_stack": [
+                    "95",
+                    0
+                ]
+            },
+            "class_type": "Eff. Loader SDXL"
+        },
+        "102": {
+            "inputs": {
+                "noise_seed": 266582301006893,
+                "steps": [
+                    "86",
+                    0
+                ],
+                "cfg": 7,
+                "sampler_name": "euler",
+                "scheduler": "normal",
+                "start_at_step": [
+                    "87",
+                    0
+                ],
+                "refine_at_step": [
+                    "88",
+                    0
+                ],
+                "preview_method": "auto",
+                "vae_decode": "true",
+                "sdxl_tuple": [
+                    "101",
+                    0
+                ],
+                "latent_image": [
+                    "99",
+                    0
+                ],
+                "optional_vae": [
+                    "101",
+                    2
+                ]
+            },
+            "class_type": "KSampler SDXL (Eff.)"
+        },
+        "103": {
+            "inputs": {
+                "input_mode": "simple",
+                "lora_count": 4,
+                "lora_name_1": "judy.safetensors",
+                "lora_wt_1": 0,
+                "model_str_1": 1,
+                "clip_str_1": 1,
+                "lora_name_2": "FF.102.colossusProjectXLSFW_49bExperimental.LORA.safetensors",
+                "lora_wt_2": 0,
+                "model_str_2": 1,
+                "clip_str_2": 1,
+                "lora_name_3": "Animated_Concept.safetensors",
+                "lora_wt_3": 0.5,
+                "model_str_3": 1,
+                "clip_str_3": 1,
+                "lora_name_4": "FF-Style-Mid-HOT-Week3.LORA.safetensors",
+                "lora_wt_4": 1.5,
+                "model_str_4": 1,
+                "clip_str_4": 1,
+                "lora_name_5": "XL\\pixel-art-xl-v1.1.safetensors",
+                "lora_wt_5": 0,
+                "model_str_5": 1,
+                "clip_str_5": 1,
+                "lora_name_6": "None",
+                "lora_wt_6": 1,
+                "model_str_6": 1,
+                "clip_str_6": 1,
+                "lora_name_7": "None",
+                "lora_wt_7": 1,
+                "model_str_7": 1,
+                "clip_str_7": 1,
+                "lora_name_8": "None",
+                "lora_wt_8": 1,
+                "model_str_8": 1,
+                "clip_str_8": 1,
+                "lora_name_9": "None",
+                "lora_wt_9": 1,
+                "model_str_9": 1,
+                "clip_str_9": 1,
+                "lora_name_10": "None",
+                "lora_wt_10": 1,
+                "model_str_10": 1,
+                "clip_str_10": 1,
+                "lora_name_11": "None",
+                "lora_wt_11": 1,
+                "model_str_11": 1,
+                "clip_str_11": 1,
+                "lora_name_12": "None",
+                "lora_wt_12": 1,
+                "model_str_12": 1,
+                "clip_str_12": 1,
+                "lora_name_13": "None",
+                "lora_wt_13": 1,
+                "model_str_13": 1,
+                "clip_str_13": 1,
+                "lora_name_14": "None",
+                "lora_wt_14": 1,
+                "model_str_14": 1,
+                "clip_str_14": 1,
+                "lora_name_15": "None",
+                "lora_wt_15": 1,
+                "model_str_15": 1,
+                "clip_str_15": 1,
+                "lora_name_16": "None",
+                "lora_wt_16": 1,
+                "model_str_16": 1,
+                "clip_str_16": 1,
+                "lora_name_17": "None",
+                "lora_wt_17": 1,
+                "model_str_17": 1,
+                "clip_str_17": 1,
+                "lora_name_18": "None",
+                "lora_wt_18": 1,
+                "model_str_18": 1,
+                "clip_str_18": 1,
+                "lora_name_19": "None",
+                "lora_wt_19": 1,
+                "model_str_19": 1,
+                "clip_str_19": 1,
+                "lora_name_20": "None",
+                "lora_wt_20": 1,
+                "model_str_20": 1,
+                "clip_str_20": 1,
+                "lora_name_21": "None",
+                "lora_wt_21": 1,
+                "model_str_21": 1,
+                "clip_str_21": 1,
+                "lora_name_22": "None",
+                "lora_wt_22": 1,
+                "model_str_22": 1,
+                "clip_str_22": 1,
+                "lora_name_23": "None",
+                "lora_wt_23": 1,
+                "model_str_23": 1,
+                "clip_str_23": 1,
+                "lora_name_24": "None",
+                "lora_wt_24": 1,
+                "model_str_24": 1,
+                "clip_str_24": 1,
+                "lora_name_25": "None",
+                "lora_wt_25": 1,
+                "model_str_25": 1,
+                "clip_str_25": 1,
+                "lora_name_26": "None",
+                "lora_wt_26": 1,
+                "model_str_26": 1,
+                "clip_str_26": 1,
+                "lora_name_27": "None",
+                "lora_wt_27": 1,
+                "model_str_27": 1,
+                "clip_str_27": 1,
+                "lora_name_28": "None",
+                "lora_wt_28": 1,
+                "model_str_28": 1,
+                "clip_str_28": 1,
+                "lora_name_29": "None",
+                "lora_wt_29": 1,
+                "model_str_29": 1,
+                "clip_str_29": 1,
+                "lora_name_30": "None",
+                "lora_wt_30": 1,
+                "model_str_30": 1,
+                "clip_str_30": 1,
+                "lora_name_31": "None",
+                "lora_wt_31": 1,
+                "model_str_31": 1,
+                "clip_str_31": 1,
+                "lora_name_32": "None",
+                "lora_wt_32": 1,
+                "model_str_32": 1,
+                "clip_str_32": 1,
+                "lora_name_33": "None",
+                "lora_wt_33": 1,
+                "model_str_33": 1,
+                "clip_str_33": 1,
+                "lora_name_34": "None",
+                "lora_wt_34": 1,
+                "model_str_34": 1,
+                "clip_str_34": 1,
+                "lora_name_35": "None",
+                "lora_wt_35": 1,
+                "model_str_35": 1,
+                "clip_str_35": 1,
+                "lora_name_36": "None",
+                "lora_wt_36": 1,
+                "model_str_36": 1,
+                "clip_str_36": 1,
+                "lora_name_37": "None",
+                "lora_wt_37": 1,
+                "model_str_37": 1,
+                "clip_str_37": 1,
+                "lora_name_38": "None",
+                "lora_wt_38": 1,
+                "model_str_38": 1,
+                "clip_str_38": 1,
+                "lora_name_39": "None",
+                "lora_wt_39": 1,
+                "model_str_39": 1,
+                "clip_str_39": 1,
+                "lora_name_40": "None",
+                "lora_wt_40": 1,
+                "model_str_40": 1,
+                "clip_str_40": 1,
+                "lora_name_41": "None",
+                "lora_wt_41": 1,
+                "model_str_41": 1,
+                "clip_str_41": 1,
+                "lora_name_42": "None",
+                "lora_wt_42": 1,
+                "model_str_42": 1,
+                "clip_str_42": 1,
+                "lora_name_43": "None",
+                "lora_wt_43": 1,
+                "model_str_43": 1,
+                "clip_str_43": 1,
+                "lora_name_44": "None",
+                "lora_wt_44": 1,
+                "model_str_44": 1,
+                "clip_str_44": 1,
+                "lora_name_45": "None",
+                "lora_wt_45": 1,
+                "model_str_45": 1,
+                "clip_str_45": 1,
+                "lora_name_46": "None",
+                "lora_wt_46": 1,
+                "model_str_46": 1,
+                "clip_str_46": 1,
+                "lora_name_47": "None",
+                "lora_wt_47": 1,
+                "model_str_47": 1,
+                "clip_str_47": 1,
+                "lora_name_48": "None",
+                "lora_wt_48": 1,
+                "model_str_48": 1,
+                "clip_str_48": 1,
+                "lora_name_49": "None",
+                "lora_wt_49": 1,
+                "model_str_49": 1,
+                "clip_str_49": 1
+            },
+            "class_type": "LoRA Stacker"
+        },
+        "104": {
+            "inputs": {
+                "text_positive": [
+                    "82",
+                    0
+                ],
+                "text_negative": [
+                    "83",
+                    0
+                ],
+                "style": "sai-enhance",
+                "log_prompt": "Yes"
+            },
+            "class_type": "SDXLPromptStyler"
+        },
+        "105": {
+            "inputs": {
+                "images": [
+                    "94",
+                    0
+                ]
+            },
+            "class_type": "PreviewImage"
+        },
+        "106": {
+            "inputs": {
+                "images": [
+                    "93",
+                    0
+                ]
+            },
+            "class_type": "PreviewImage"
+        },
+        "107": {
+            "inputs": {
+                "filename_prefix": "ComfyUI",
+                "images": [
+                    "102",
+                    3
+                ]
+            },
+            "class_type": "SaveImage"
+        },
+        "110": {
+            "inputs": {
+                "images": [
+                    "79",
+                    0
+                ]
+            },
+            "class_type": "PreviewImage"
+        }
+    },
+    "extra_data": {
+        "extra_pnginfo": {
+            "workflow": {
+                "last_node_id": 111,
+                "last_link_id": 281,
+                "nodes": [
+                    {
+                        "id": 90,
+                        "type": "SimpleMath",
+                        "pos": [
+                            496.9826632233506,
+                            1332.8355871360623
+                        ],
+                        "size": {
+                            "0": 315,
+                            "1": 78
+                        },
+                        "flags": {},
+                        "order": 0,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "a",
+                                "type": "INT,FLOAT",
+                                "link": null
+                            },
+                            {
+                                "name": "b",
+                                "type": "INT,FLOAT",
+                                "link": null
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "INT",
+                                "type": "INT",
+                                "links": null,
+                                "shape": 3
+                            },
+                            {
+                                "name": "FLOAT",
+                                "type": "FLOAT",
+                                "links": [
+                                    206
+                                ],
+                                "shape": 3,
+                                "slot_index": 1
+                            }
+                        ],
+                        "title": "base step\uc758 \ube44\uc728(\ub098\uba38\uc9c0\ub294 refine step)",
+                        "properties": {
+                            "Node name for S&R": "SimpleMath"
+                        },
+                        "widgets_values": [
+                            "0.8"
+                        ]
+                    },
+                    {
+                        "id": 85,
+                        "type": "SimpleMath",
+                        "pos": [
+                            496.9826632233506,
+                            1202.8355871360623
+                        ],
+                        "size": {
+                            "0": 315,
+                            "1": 78
+                        },
+                        "flags": {},
+                        "order": 1,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "a",
+                                "type": "INT,FLOAT",
+                                "link": null,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "b",
+                                "type": "INT,FLOAT",
+                                "link": null
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "INT",
+                                "type": "INT",
+                                "links": [
+                                    204,
+                                    205,
+                                    272
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "FLOAT",
+                                "type": "FLOAT",
+                                "links": [],
+                                "shape": 3
+                            }
+                        ],
+                        "title": "step",
+                        "properties": {
+                            "Node name for S&R": "SimpleMath"
+                        },
+                        "widgets_values": [
+                            "25"
+                        ]
+                    },
+                    {
+                        "id": 89,
+                        "type": "SimpleMath",
+                        "pos": [
+                            -496.79379706142225,
+                            1338.8962052751556
+                        ],
+                        "size": {
+                            "0": 315,
+                            "1": 78
+                        },
+                        "flags": {},
+                        "order": 11,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "a",
+                                "type": "INT,FLOAT",
+                                "link": 205
+                            },
+                            {
+                                "name": "b",
+                                "type": "INT,FLOAT",
+                                "link": 206
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "INT",
+                                "type": "INT",
+                                "links": [
+                                    214
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "FLOAT",
+                                "type": "FLOAT",
+                                "links": null,
+                                "shape": 3
+                            }
+                        ],
+                        "title": "step * base step\ube44\uc728 = base step",
+                        "properties": {
+                            "Node name for S&R": "SimpleMath"
+                        },
+                        "widgets_values": [
+                            "a*b"
+                        ]
+                    },
+                    {
+                        "id": 103,
+                        "type": "LoRA Stacker",
+                        "pos": [
+                            341.6011480210279,
+                            -481.3549432242004
+                        ],
+                        "size": {
+                            "0": 320,
+                            "1": 274
+                        },
+                        "flags": {},
+                        "order": 2,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "lora_stack",
+                                "type": "LORA_STACK",
+                                "link": null
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "LORA_STACK",
+                                "type": "LORA_STACK",
+                                "links": [
+                                    233
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "LoRA Stacker"
+                        },
+                        "widgets_values": [
+                            "simple",
+                            4,
+                            "judy.safetensors",
+                            0,
+                            1,
+                            1,
+                            "FF.102.colossusProjectXLSFW_49bExperimental.LORA.safetensors",
+                            0,
+                            1,
+                            1,
+                            "Animated_Concept.safetensors",
+                            0.5,
+                            1,
+                            1,
+                            "FF-Style-Mid-HOT-Week3.LORA.safetensors",
+                            1.5,
+                            1,
+                            1,
+                            "XL\\pixel-art-xl-v1.1.safetensors",
+                            0,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1,
+                            "None",
+                            1,
+                            1,
+                            1
+                        ],
+                        "color": "#222233",
+                        "bgcolor": "#333355",
+                        "shape": 1
+                    },
+                    {
+                        "id": 82,
+                        "type": "StringFunction|pysssss",
+                        "pos": [
+                            1473.9514260864316,
+                            627.0798067547438
+                        ],
+                        "size": {
+                            "0": 425.12310791015625,
+                            "1": 308.28741455078125
+                        },
+                        "flags": {},
+                        "order": 16,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "text_a",
+                                "type": "STRING",
+                                "link": 235,
+                                "widget": {
+                                    "name": "text_a"
+                                }
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "STRING",
+                                "type": "STRING",
+                                "links": [
+                                    237
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "title": "positive style prompt",
+                        "properties": {
+                            "Node name for S&R": "StringFunction|pysssss"
+                        },
+                        "widgets_values": [
+                            "append",
+                            "yes",
+                            "autiful masterpiece, sharp focus, ultra detailed, best quality, warm lighting, thick lineart, artstation trending, Animated_Concept",
+                            "beautiful masterpiece, sharp focus, ultra detailed, best quality, warm lighting, thick line art, artstation trending, Animated_Concept",
+                            ""
+                        ]
+                    },
+                    {
+                        "id": 83,
+                        "type": "StringFunction|pysssss",
+                        "pos": [
+                            1480.9514260864316,
+                            986.0798067547433
+                        ],
+                        "size": {
+                            "0": 421.49676513671875,
+                            "1": 315.63690185546875
+                        },
+                        "flags": {},
+                        "order": 15,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "text_a",
+                                "type": "STRING",
+                                "link": 236,
+                                "widget": {
+                                    "name": "text_a"
+                                }
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "STRING",
+                                "type": "STRING",
+                                "links": [
+                                    238
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "title": "negative style prompt",
+                        "properties": {
+                            "Node name for S&R": "StringFunction|pysssss"
+                        },
+                        "widgets_values": [
+                            "append",
+                            "yes",
+                            "autiful masterpiece, sharp focus, ultra detailed, best quality, warm lighting, thick lineart, artstation trending, Animated_Concept",
+                            "disfigured, ugly, bad, immature, b&w, low quality, out of focus, worst quality, watermark, cropped, nsfw, cross-eye, missing fingers, signature, blurry, extra arms, bad legs, bad proportions, extra limbs, deformed, bad finggers, loweres, bad eyes, two tongues, bad tongues",
+                            ""
+                        ]
+                    },
+                    {
+                        "id": 91,
+                        "type": "ImageScale",
+                        "pos": [
+                            -361.76142571632755,
+                            701.1493382229601
+                        ],
+                        "size": {
+                            "0": 315,
+                            "1": 130
+                        },
+                        "flags": {},
+                        "order": 13,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "image",
+                                "type": "IMAGE",
+                                "link": 218
+                            },
+                            {
+                                "name": "width",
+                                "type": "INT",
+                                "link": 216,
+                                "widget": {
+                                    "name": "width"
+                                },
+                                "slot_index": 1
+                            },
+                            {
+                                "name": "height",
+                                "type": "INT",
+                                "link": 217,
+                                "widget": {
+                                    "name": "height"
+                                },
+                                "slot_index": 2
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "IMAGE",
+                                "type": "IMAGE",
+                                "links": [
+                                    223,
+                                    246,
+                                    264
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "ImageScale"
+                        },
+                        "widgets_values": [
+                            "nearest-exact",
+                            512,
+                            512,
+                            "disabled"
+                        ]
+                    },
+                    {
+                        "id": 100,
+                        "type": "CheckpointLoaderSimple",
+                        "pos": [
+                            -25.207273685077332,
+                            788.2962724807721
+                        ],
+                        "size": {
+                            "0": 271.92877197265625,
+                            "1": 98
+                        },
+                        "flags": {},
+                        "order": 3,
+                        "mode": 0,
+                        "inputs": [],
+                        "outputs": [
+                            {
+                                "name": "MODEL",
+                                "type": "MODEL",
+                                "links": [],
+                                "shape": 3,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "CLIP",
+                                "type": "CLIP",
+                                "links": [],
+                                "shape": 3,
+                                "slot_index": 1
+                            },
+                            {
+                                "name": "VAE",
+                                "type": "VAE",
+                                "links": [
+                                    229
+                                ],
+                                "shape": 3,
+                                "slot_index": 2
+                            }
+                        ],
+                        "title": "Load Base Model",
+                        "properties": {
+                            "Node name for S&R": "CheckpointLoaderSimple"
+                        },
+                        "widgets_values": [
+                            "sdXL_v10VAEFix.safetensors"
+                        ]
+                    },
+                    {
+                        "id": 99,
+                        "type": "VAEEncode",
+                        "pos": [
+                            -3.2072736850773964,
+                            668.2962724807726
+                        ],
+                        "size": {
+                            "0": 210,
+                            "1": 46
+                        },
+                        "flags": {},
+                        "order": 18,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "pixels",
+                                "type": "IMAGE",
+                                "link": 246
+                            },
+                            {
+                                "name": "vae",
+                                "type": "VAE",
+                                "link": 229
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "LATENT",
+                                "type": "LATENT",
+                                "links": [
+                                    247
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "VAEEncode"
+                        }
+                    },
+                    {
+                        "id": 98,
+                        "type": "ControlNetLoader",
+                        "pos": [
+                            -481.81546906585106,
+                            167.39626193218837
+                        ],
+                        "size": {
+                            "0": 225.58285522460938,
+                            "1": 96.56714630126953
+                        },
+                        "flags": {},
+                        "order": 4,
+                        "mode": 0,
+                        "outputs": [
+                            {
+                                "name": "CONTROL_NET",
+                                "type": "CONTROL_NET",
+                                "links": [
+                                    226
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "ControlNetLoader"
+                        },
+                        "widgets_values": [
+                            "control-lora-depth-rank256.safetensors"
+                        ]
+                    },
+                    {
+                        "id": 96,
+                        "type": "ControlNetLoader",
+                        "pos": [
+                            -79.81546906585193,
+                            171.39626193218837
+                        ],
+                        "size": {
+                            "0": 225.58285522460938,
+                            "1": 96.56714630126953
+                        },
+                        "flags": {},
+                        "order": 5,
+                        "mode": 0,
+                        "outputs": [
+                            {
+                                "name": "CONTROL_NET",
+                                "type": "CONTROL_NET",
+                                "links": [
+                                    224
+                                ],
+                                "shape": 3
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "ControlNetLoader"
+                        },
+                        "widgets_values": [
+                            "control-lora-canny-rank256.safetensors"
+                        ]
+                    },
+                    {
+                        "id": 93,
+                        "type": "CannyEdgePreprocessor",
+                        "pos": [
+                            -90.81546906585196,
+                            -7.60373806781175
+                        ],
+                        "size": {
+                            "0": 315,
+                            "1": 106
+                        },
+                        "flags": {},
+                        "order": 17,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "image",
+                                "type": "IMAGE",
+                                "link": 223
+                            },
+                            {
+                                "name": "resolution",
+                                "type": "INT",
+                                "link": 221,
+                                "widget": {
+                                    "name": "resolution"
+                                }
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "IMAGE",
+                                "type": "IMAGE",
+                                "links": [
+                                    228,
+                                    249
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "CannyEdgePreprocessor"
+                        },
+                        "widgets_values": [
+                            100,
+                            200,
+                            1024
+                        ]
+                    },
+                    {
+                        "id": 106,
+                        "type": "PreviewImage",
+                        "pos": [
+                            -111.81546906585194,
+                            -325.60373806781223
+                        ],
+                        "size": {
+                            "0": 210,
+                            "1": 246
+                        },
+                        "flags": {},
+                        "order": 22,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "images",
+                                "type": "IMAGE",
+                                "link": 249
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "PreviewImage"
+                        }
+                    },
+                    {
+                        "id": 105,
+                        "type": "PreviewImage",
+                        "pos": [
+                            -488.81546906585106,
+                            -316.60373806781223
+                        ],
+                        "size": {
+                            "0": 210,
+                            "1": 246
+                        },
+                        "flags": {},
+                        "order": 24,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "images",
+                                "type": "IMAGE",
+                                "link": 248
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "PreviewImage"
+                        }
+                    },
+                    {
+                        "id": 88,
+                        "type": "SimpleMath",
+                        "pos": [
+                            -496.79379706142225,
+                            1468.896205275156
+                        ],
+                        "size": {
+                            "0": 315,
+                            "1": 78
+                        },
+                        "flags": {},
+                        "order": 25,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "a",
+                                "type": "INT,FLOAT",
+                                "link": 213
+                            },
+                            {
+                                "name": "b",
+                                "type": "INT,FLOAT",
+                                "link": 214
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "INT",
+                                "type": "INT",
+                                "links": [
+                                    270
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "FLOAT",
+                                "type": "FLOAT",
+                                "links": [],
+                                "shape": 3,
+                                "slot_index": 1
+                            }
+                        ],
+                        "title": "skipped + base step = start/end step",
+                        "properties": {
+                            "Node name for S&R": "SimpleMath"
+                        },
+                        "widgets_values": [
+                            "a+b"
+                        ]
+                    },
+                    {
+                        "id": 87,
+                        "type": "SimpleMath",
+                        "pos": [
+                            -497.79379706142225,
+                            1207.8962052751556
+                        ],
+                        "size": {
+                            "0": 315,
+                            "1": 78
+                        },
+                        "flags": {},
+                        "order": 20,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "a",
+                                "type": "INT,FLOAT",
+                                "link": 203
+                            },
+                            {
+                                "name": "b",
+                                "type": "INT,FLOAT",
+                                "link": 204,
+                                "slot_index": 1
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "INT",
+                                "type": "INT",
+                                "links": [
+                                    213,
+                                    271
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "FLOAT",
+                                "type": "FLOAT",
+                                "links": [],
+                                "shape": 3,
+                                "slot_index": 1
+                            }
+                        ],
+                        "title": "total steps - steps = skipped step",
+                        "properties": {
+                            "Node name for S&R": "SimpleMath"
+                        },
+                        "widgets_values": [
+                            "a-b"
+                        ]
+                    },
+                    {
+                        "id": 94,
+                        "type": "LeReS-DepthMapPreprocessor",
+                        "pos": [
+                            -490.81546906585106,
+                            -21.603738067811843
+                        ],
+                        "size": {
+                            "0": 369.6000061035156,
+                            "1": 130
+                        },
+                        "flags": {},
+                        "order": 19,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "image",
+                                "type": "IMAGE",
+                                "link": 264
+                            },
+                            {
+                                "name": "resolution",
+                                "type": "INT",
+                                "link": 220,
+                                "widget": {
+                                    "name": "resolution"
+                                }
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "IMAGE",
+                                "type": "IMAGE",
+                                "links": [
+                                    227,
+                                    248
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "LeReS-DepthMapPreprocessor"
+                        },
+                        "widgets_values": [
+                            0,
+                            0,
+                            "enable",
+                            1024
+                        ]
+                    },
+                    {
+                        "id": 86,
+                        "type": "SimpleMath",
+                        "pos": [
+                            -496.79379706142225,
+                            1079.8962052751556
+                        ],
+                        "size": {
+                            "0": 315,
+                            "1": 78
+                        },
+                        "flags": {},
+                        "order": 14,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "a",
+                                "type": "INT,FLOAT",
+                                "link": 272
+                            },
+                            {
+                                "name": "b",
+                                "type": "INT,FLOAT",
+                                "link": 274,
+                                "slot_index": 1
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "INT",
+                                "type": "INT",
+                                "links": [
+                                    203,
+                                    268
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "FLOAT",
+                                "type": "FLOAT",
+                                "links": null,
+                                "shape": 3
+                            }
+                        ],
+                        "title": "step / denoise = total step",
+                        "properties": {
+                            "Node name for S&R": "SimpleMath"
+                        },
+                        "widgets_values": [
+                            "a/b"
+                        ]
+                    },
+                    {
+                        "id": 110,
+                        "type": "PreviewImage",
+                        "pos": [
+                            2562,
+                            -677
+                        ],
+                        "size": {
+                            "0": 931.3931274414062,
+                            "1": 916.2412109375
+                        },
+                        "flags": {},
+                        "order": 12,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "images",
+                                "type": "IMAGE",
+                                "link": 279
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "PreviewImage"
+                        }
+                    },
+                    {
+                        "id": 104,
+                        "type": "SDXLPromptStyler",
+                        "pos": [
+                            1441,
+                            366
+                        ],
+                        "size": {
+                            "0": 473.313232421875,
+                            "1": 118.63232421875
+                        },
+                        "flags": {},
+                        "order": 21,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "text_positive",
+                                "type": "STRING",
+                                "link": 237,
+                                "widget": {
+                                    "name": "text_positive"
+                                }
+                            },
+                            {
+                                "name": "text_negative",
+                                "type": "STRING",
+                                "link": 238,
+                                "widget": {
+                                    "name": "text_negative"
+                                }
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "text_positive",
+                                "type": "STRING",
+                                "links": [
+                                    240
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "text_negative",
+                                "type": "STRING",
+                                "links": [
+                                    241
+                                ],
+                                "shape": 3,
+                                "slot_index": 1
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "SDXLPromptStyler"
+                        },
+                        "widgets_values": [
+                            "beautiful masterpiece, sharp focus, ultra detailed, best quality, warm lighting, thick lineart, artstation trending, Animated_Concept, lying, star_\\(symbol\\), pillow, no_humans, animal, sleeping, couch, dog, animal_focus",
+                            "disfigured, ugly, bad, immature, b&w, low quality, out of focus, worst quality, watermark, cropped, nsfw, cross-eye, missing fingers, signature, blurry, extra arms, bad legs, bad proportions, extra limbs, deformed, bad finggers, loweres, bad eyes",
+                            "sai-enhance",
+                            "Yes"
+                        ]
+                    },
+                    {
+                        "id": 107,
+                        "type": "SaveImage",
+                        "pos": [
+                            1553,
+                            -675
+                        ],
+                        "size": {
+                            "0": 984.5140380859375,
+                            "1": 915.6029052734375
+                        },
+                        "flags": {},
+                        "order": 29,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "images",
+                                "type": "IMAGE",
+                                "link": 280
+                            }
+                        ],
+                        "properties": {},
+                        "widgets_values": [
+                            "ComfyUI"
+                        ]
+                    },
+                    {
+                        "id": 97,
+                        "type": "Control Net Stacker",
+                        "pos": [
+                            -505,
+                            323
+                        ],
+                        "size": {
+                            "0": 315,
+                            "1": 146
+                        },
+                        "flags": {},
+                        "order": 23,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "control_net",
+                                "type": "CONTROL_NET",
+                                "link": 226,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "image",
+                                "type": "IMAGE",
+                                "link": 227,
+                                "slot_index": 1
+                            },
+                            {
+                                "name": "cnet_stack",
+                                "type": "CONTROL_NET_STACK",
+                                "link": null,
+                                "slot_index": 2
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "CNET_STACK",
+                                "type": "CONTROL_NET_STACK",
+                                "links": [
+                                    225
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "Control Net Stacker"
+                        },
+                        "widgets_values": [
+                            1.75,
+                            0,
+                            1
+                        ],
+                        "color": "#223322",
+                        "bgcolor": "#335533",
+                        "shape": 1
+                    },
+                    {
+                        "id": 79,
+                        "type": "LoadImage",
+                        "pos": [
+                            396.9826632233505,
+                            702.8355871360628
+                        ],
+                        "size": {
+                            "0": 409.4535827636719,
+                            "1": 439.03851318359375
+                        },
+                        "flags": {},
+                        "order": 6,
+                        "mode": 0,
+                        "outputs": [
+                            {
+                                "name": "IMAGE",
+                                "type": "IMAGE",
+                                "links": [
+                                    218,
+                                    279
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "MASK",
+                                "type": "MASK",
+                                "links": null,
+                                "shape": 3
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "LoadImage"
+                        },
+                        "widgets_values": [
+                            "UID164_T1667439783547 (1).jpg",
+                            "image"
+                        ]
+                    },
+                    {
+                        "id": 92,
+                        "type": "CR SDXL Aspect Ratio",
+                        "pos": [
+                            407.9826632233505,
+                            409.8355871360628
+                        ],
+                        "size": {
+                            "0": 309.1993103027344,
+                            "1": 238.04624938964844
+                        },
+                        "flags": {},
+                        "order": 7,
+                        "mode": 0,
+                        "outputs": [
+                            {
+                                "name": "width",
+                                "type": "INT",
+                                "links": [
+                                    216,
+                                    220,
+                                    221,
+                                    242
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "height",
+                                "type": "INT",
+                                "links": [
+                                    217,
+                                    243
+                                ],
+                                "shape": 3,
+                                "slot_index": 1
+                            },
+                            {
+                                "name": "upscale_factor",
+                                "type": "FLOAT",
+                                "links": null,
+                                "shape": 3
+                            },
+                            {
+                                "name": "batch_size",
+                                "type": "INT",
+                                "links": [
+                                    244
+                                ],
+                                "shape": 3,
+                                "slot_index": 3
+                            }
+                        ],
+                        "title": "load image ratio",
+                        "properties": {
+                            "Node name for S&R": "CR SDXL Aspect Ratio"
+                        },
+                        "widgets_values": [
+                            1024,
+                            1024,
+                            "3:2 landscape 1216x832",
+                            "Off",
+                            1,
+                            1
+                        ]
+                    },
+                    {
+                        "id": 95,
+                        "type": "Control Net Stacker",
+                        "pos": [
+                            -98.81546906585197,
+                            317.39626193218845
+                        ],
+                        "size": {
+                            "0": 315,
+                            "1": 146
+                        },
+                        "flags": {},
+                        "order": 26,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "control_net",
+                                "type": "CONTROL_NET",
+                                "link": 224,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "image",
+                                "type": "IMAGE",
+                                "link": 228,
+                                "slot_index": 1
+                            },
+                            {
+                                "name": "cnet_stack",
+                                "type": "CONTROL_NET_STACK",
+                                "link": 225
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "CNET_STACK",
+                                "type": "CONTROL_NET_STACK",
+                                "links": [
+                                    281
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "Control Net Stacker"
+                        },
+                        "widgets_values": [
+                            0.5,
+                            0,
+                            1
+                        ],
+                        "color": "#223322",
+                        "bgcolor": "#335533",
+                        "shape": 1
+                    },
+                    {
+                        "id": 84,
+                        "type": "SimpleMath",
+                        "pos": [
+                            496.9826632233506,
+                            1462.835587136062
+                        ],
+                        "size": {
+                            "0": 315,
+                            "1": 78
+                        },
+                        "flags": {},
+                        "order": 8,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "a",
+                                "type": "INT,FLOAT",
+                                "link": null
+                            },
+                            {
+                                "name": "b",
+                                "type": "INT,FLOAT",
+                                "link": null,
+                                "slot_index": 1
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "INT",
+                                "type": "INT",
+                                "links": [],
+                                "shape": 3,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "FLOAT",
+                                "type": "FLOAT",
+                                "links": [
+                                    274
+                                ],
+                                "shape": 3,
+                                "slot_index": 1
+                            }
+                        ],
+                        "title": "denoise strength",
+                        "properties": {
+                            "Node name for S&R": "SimpleMath"
+                        },
+                        "widgets_values": [
+                            "0.5"
+                        ]
+                    },
+                    {
+                        "id": 102,
+                        "type": "KSampler SDXL (Eff.)",
+                        "pos": [
+                            1054.6011480210282,
+                            -481.3549432242004
+                        ],
+                        "size": {
+                            "0": 330,
+                            "1": 570
+                        },
+                        "flags": {},
+                        "order": 28,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "sdxl_tuple",
+                                "type": "SDXL_TUPLE",
+                                "link": 231
+                            },
+                            {
+                                "name": "latent_image",
+                                "type": "LATENT",
+                                "link": 247
+                            },
+                            {
+                                "name": "optional_vae",
+                                "type": "VAE",
+                                "link": 232
+                            },
+                            {
+                                "name": "script",
+                                "type": "SCRIPT",
+                                "link": null
+                            },
+                            {
+                                "name": "steps",
+                                "type": "INT",
+                                "link": 268,
+                                "widget": {
+                                    "name": "steps"
+                                },
+                                "slot_index": 4
+                            },
+                            {
+                                "name": "refine_at_step",
+                                "type": "INT",
+                                "link": 270,
+                                "widget": {
+                                    "name": "refine_at_step"
+                                }
+                            },
+                            {
+                                "name": "start_at_step",
+                                "type": "INT",
+                                "link": 271,
+                                "widget": {
+                                    "name": "start_at_step"
+                                }
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "SDXL_TUPLE",
+                                "type": "SDXL_TUPLE",
+                                "links": null,
+                                "shape": 3
+                            },
+                            {
+                                "name": "LATENT",
+                                "type": "LATENT",
+                                "links": null,
+                                "shape": 3
+                            },
+                            {
+                                "name": "VAE",
+                                "type": "VAE",
+                                "links": null,
+                                "shape": 3
+                            },
+                            {
+                                "name": "IMAGE",
+                                "type": "IMAGE",
+                                "links": [
+                                    280
+                                ],
+                                "shape": 3,
+                                "slot_index": 3
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "KSampler SDXL (Eff.)"
+                        },
+                        "widgets_values": [
+                            266582301006893,
+                            null,
+                            30,
+                            7,
+                            "euler",
+                            "normal",
+                            0,
+                            26,
+                            "auto",
+                            "true"
+                        ],
+                        "color": "#222233",
+                        "bgcolor": "#333355",
+                        "shape": 1
+                    },
+                    {
+                        "id": 101,
+                        "type": "Eff. Loader SDXL",
+                        "pos": [
+                            699,
+                            -478
+                        ],
+                        "size": {
+                            "0": 304.0798034667969,
+                            "1": 608.0665283203125
+                        },
+                        "flags": {},
+                        "order": 27,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "lora_stack",
+                                "type": "LORA_STACK",
+                                "link": 233
+                            },
+                            {
+                                "name": "cnet_stack",
+                                "type": "CONTROL_NET_STACK",
+                                "link": 281,
+                                "slot_index": 1
+                            },
+                            {
+                                "name": "positive",
+                                "type": "STRING",
+                                "link": 240,
+                                "widget": {
+                                    "name": "positive"
+                                }
+                            },
+                            {
+                                "name": "negative",
+                                "type": "STRING",
+                                "link": 241,
+                                "widget": {
+                                    "name": "negative"
+                                }
+                            },
+                            {
+                                "name": "empty_latent_width",
+                                "type": "INT",
+                                "link": 242,
+                                "widget": {
+                                    "name": "empty_latent_width"
+                                }
+                            },
+                            {
+                                "name": "empty_latent_height",
+                                "type": "INT",
+                                "link": 243,
+                                "widget": {
+                                    "name": "empty_latent_height"
+                                }
+                            },
+                            {
+                                "name": "batch_size",
+                                "type": "INT",
+                                "link": 244,
+                                "widget": {
+                                    "name": "batch_size"
+                                }
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "SDXL_TUPLE",
+                                "type": "SDXL_TUPLE",
+                                "links": [
+                                    231
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            },
+                            {
+                                "name": "LATENT",
+                                "type": "LATENT",
+                                "links": [],
+                                "shape": 3,
+                                "slot_index": 1
+                            },
+                            {
+                                "name": "VAE",
+                                "type": "VAE",
+                                "links": [
+                                    232
+                                ],
+                                "shape": 3,
+                                "slot_index": 2
+                            },
+                            {
+                                "name": "DEPENDENCIES",
+                                "type": "DEPENDENCIES",
+                                "links": [],
+                                "shape": 3,
+                                "slot_index": 3
+                            }
+                        ],
+                        "properties": {
+                            "Node name for S&R": "Eff. Loader SDXL"
+                        },
+                        "widgets_values": [
+                            "sdXL_v10VAEFix.safetensors",
+                            -1,
+                            "sdXL_v10RefinerVAEFix.safetensors",
+                            -1,
+                            6,
+                            2,
+                            "Baked VAE",
+                            "Positive",
+                            "Negative",
+                            "none",
+                            "comfy",
+                            1024,
+                            1024,
+                            1
+                        ],
+                        "color": "#223333",
+                        "bgcolor": "#335555",
+                        "shape": 1
+                    },
+                    {
+                        "id": 81,
+                        "type": "StringFunction|pysssss",
+                        "pos": [
+                            844,
+                            1039
+                        ],
+                        "size": {
+                            "0": 536.693115234375,
+                            "1": 307.4098815917969
+                        },
+                        "flags": {},
+                        "order": 9,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "text_a",
+                                "type": "STRING",
+                                "link": null,
+                                "widget": {
+                                    "name": "text_a"
+                                }
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "STRING",
+                                "type": "STRING",
+                                "links": [
+                                    236
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "title": "+negative prompt",
+                        "properties": {
+                            "Node name for S&R": "StringFunction|pysssss"
+                        },
+                        "widgets_values": [
+                            "append",
+                            "yes",
+                            "test",
+                            "choiseonhyo negative",
+                            ""
+                        ]
+                    },
+                    {
+                        "id": 80,
+                        "type": "StringFunction|pysssss",
+                        "pos": [
+                            847,
+                            683
+                        ],
+                        "size": {
+                            "0": 537.8507080078125,
+                            "1": 303.9729309082031
+                        },
+                        "flags": {},
+                        "order": 10,
+                        "mode": 0,
+                        "inputs": [
+                            {
+                                "name": "text_a",
+                                "type": "STRING",
+                                "link": null,
+                                "widget": {
+                                    "name": "text_a"
+                                }
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "name": "STRING",
+                                "type": "STRING",
+                                "links": [
+                                    235
+                                ],
+                                "shape": 3,
+                                "slot_index": 0
+                            }
+                        ],
+                        "title": "+positive prompt",
+                        "properties": {
+                            "Node name for S&R": "StringFunction|pysssss"
+                        },
+                        "widgets_values": [
+                            "append",
+                            "yes",
+                            "test",
+                            "choiseonhyo positive",
+                            ""
+                        ]
+                    }
+                ],
+                "links": [
+                    [
+                        203,
+                        86,
+                        0,
+                        87,
+                        0,
+                        "INT,FLOAT"
+                    ],
+                    [
+                        204,
+                        85,
+                        0,
+                        87,
+                        1,
+                        "INT,FLOAT"
+                    ],
+                    [
+                        205,
+                        85,
+                        0,
+                        89,
+                        0,
+                        "INT,FLOAT"
+                    ],
+                    [
+                        206,
+                        90,
+                        1,
+                        89,
+                        1,
+                        "INT,FLOAT"
+                    ],
+                    [
+                        213,
+                        87,
+                        0,
+                        88,
+                        0,
+                        "INT,FLOAT"
+                    ],
+                    [
+                        214,
+                        89,
+                        0,
+                        88,
+                        1,
+                        "INT,FLOAT"
+                    ],
+                    [
+                        216,
+                        92,
+                        0,
+                        91,
+                        1,
+                        "INT"
+                    ],
+                    [
+                        217,
+                        92,
+                        1,
+                        91,
+                        2,
+                        "INT"
+                    ],
+                    [
+                        218,
+                        79,
+                        0,
+                        91,
+                        0,
+                        "IMAGE"
+                    ],
+                    [
+                        220,
+                        92,
+                        0,
+                        94,
+                        1,
+                        "INT"
+                    ],
+                    [
+                        221,
+                        92,
+                        0,
+                        93,
+                        1,
+                        "INT"
+                    ],
+                    [
+                        223,
+                        91,
+                        0,
+                        93,
+                        0,
+                        "IMAGE"
+                    ],
+                    [
+                        224,
+                        96,
+                        0,
+                        95,
+                        0,
+                        "CONTROL_NET"
+                    ],
+                    [
+                        225,
+                        97,
+                        0,
+                        95,
+                        2,
+                        "CONTROL_NET_STACK"
+                    ],
+                    [
+                        226,
+                        98,
+                        0,
+                        97,
+                        0,
+                        "CONTROL_NET"
+                    ],
+                    [
+                        227,
+                        94,
+                        0,
+                        97,
+                        1,
+                        "IMAGE"
+                    ],
+                    [
+                        228,
+                        93,
+                        0,
+                        95,
+                        1,
+                        "IMAGE"
+                    ],
+                    [
+                        229,
+                        100,
+                        2,
+                        99,
+                        1,
+                        "VAE"
+                    ],
+                    [
+                        231,
+                        101,
+                        0,
+                        102,
+                        0,
+                        "SDXL_TUPLE"
+                    ],
+                    [
+                        232,
+                        101,
+                        2,
+                        102,
+                        2,
+                        "VAE"
+                    ],
+                    [
+                        233,
+                        103,
+                        0,
+                        101,
+                        0,
+                        "LORA_STACK"
+                    ],
+                    [
+                        235,
+                        80,
+                        0,
+                        82,
+                        0,
+                        "STRING"
+                    ],
+                    [
+                        236,
+                        81,
+                        0,
+                        83,
+                        0,
+                        "STRING"
+                    ],
+                    [
+                        237,
+                        82,
+                        0,
+                        104,
+                        0,
+                        "STRING"
+                    ],
+                    [
+                        238,
+                        83,
+                        0,
+                        104,
+                        1,
+                        "STRING"
+                    ],
+                    [
+                        240,
+                        104,
+                        0,
+                        101,
+                        2,
+                        "STRING"
+                    ],
+                    [
+                        241,
+                        104,
+                        1,
+                        101,
+                        3,
+                        "STRING"
+                    ],
+                    [
+                        242,
+                        92,
+                        0,
+                        101,
+                        4,
+                        "INT"
+                    ],
+                    [
+                        243,
+                        92,
+                        1,
+                        101,
+                        5,
+                        "INT"
+                    ],
+                    [
+                        244,
+                        92,
+                        3,
+                        101,
+                        6,
+                        "INT"
+                    ],
+                    [
+                        246,
+                        91,
+                        0,
+                        99,
+                        0,
+                        "IMAGE"
+                    ],
+                    [
+                        247,
+                        99,
+                        0,
+                        102,
+                        1,
+                        "LATENT"
+                    ],
+                    [
+                        248,
+                        94,
+                        0,
+                        105,
+                        0,
+                        "IMAGE"
+                    ],
+                    [
+                        249,
+                        93,
+                        0,
+                        106,
+                        0,
+                        "IMAGE"
+                    ],
+                    [
+                        264,
+                        91,
+                        0,
+                        94,
+                        0,
+                        "IMAGE"
+                    ],
+                    [
+                        268,
+                        86,
+                        0,
+                        102,
+                        4,
+                        "INT"
+                    ],
+                    [
+                        270,
+                        88,
+                        0,
+                        102,
+                        5,
+                        "INT"
+                    ],
+                    [
+                        271,
+                        87,
+                        0,
+                        102,
+                        6,
+                        "INT"
+                    ],
+                    [
+                        272,
+                        85,
+                        0,
+                        86,
+                        0,
+                        "INT,FLOAT"
+                    ],
+                    [
+                        274,
+                        84,
+                        1,
+                        86,
+                        1,
+                        "INT,FLOAT"
+                    ],
+                    [
+                        279,
+                        79,
+                        0,
+                        110,
+                        0,
+                        "IMAGE"
+                    ],
+                    [
+                        280,
+                        102,
+                        3,
+                        107,
+                        0,
+                        "IMAGE"
+                    ],
+                    [
+                        281,
+                        95,
+                        0,
+                        101,
+                        1,
+                        "CONTROL_NET_STACK"
+                    ]
+                ],
+                "groups": [
+                    {
+                        "title": "input group",
+                        "bounding": [
+                            387,
+                            319,
+                            1008,
+                            1232
+                        ],
+                        "color": "#b58b2a",
+                        "font_size": 24,
+                        "locked": false
+                    },
+                    {
+                        "title": "\ud654\ud48d \ubc0f \ud488\uc9c8 prompt",
+                        "bounding": [
+                            1452,
+                            515,
+                            508,
+                            882
+                        ],
+                        "color": "#3f789e",
+                        "font_size": 24,
+                        "locked": false
+                    },
+                    {
+                        "title": "denoise, base, refine step logic",
+                        "bounding": [
+                            -522,
+                            994,
+                            822,
+                            567
+                        ],
+                        "color": "#3f789e",
+                        "font_size": 24,
+                        "locked": false
+                    },
+                    {
+                        "title": "image vae encode group",
+                        "bounding": [
+                            -401,
+                            596,
+                            663,
+                            329
+                        ],
+                        "color": "#3f789e",
+                        "font_size": 24,
+                        "locked": false
+                    },
+                    {
+                        "title": "controlnet",
+                        "bounding": [
+                            -515,
+                            -400,
+                            749,
+                            879
+                        ],
+                        "color": "#b06634",
+                        "font_size": 24,
+                        "locked": false
+                    },
+                    {
+                        "title": "Loader & Sampler",
+                        "bounding": [
+                            294,
+                            -566,
+                            1147,
+                            796
+                        ],
+                        "color": "#3f789e",
+                        "font_size": 24,
+                        "locked": false
+                    },
+                    {
+                        "title": "Save & Preview",
+                        "bounding": [
+                            1533,
+                            -751,
+                            1991,
+                            1006
+                        ],
+                        "color": "#3f789e",
+                        "font_size": 24,
+                        "locked": false
+                    }
+                ],
+                "config": {},
+                "extra": {},
+                "version": 0.4
+            }
+        }
+    }
+}
